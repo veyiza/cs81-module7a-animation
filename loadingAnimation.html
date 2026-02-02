@@ -36,6 +36,10 @@
 
     // Updates the loader text using the current frame
       loader.textContent = frames[index % frames.length];
+    // New feature
+      document.body.style.backgroundColor =
+      cycleCount % 2 === 0 ? "#f4f4f4" : "#e6f7ff";
+
 
       // Move to the next frame
       index++;
