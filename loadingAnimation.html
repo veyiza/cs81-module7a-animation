@@ -10,31 +10,55 @@
   <div id="status">Please wait</div>
 
   <script>
-    function runLoadingAnimation() {
-      const loader = document.getElementById("loader");
-      const status = document.getElementById("status");
+  // Controls the loading animation
+  function runLoadingAnimation() {
 
-      const frames = ["⏳", "⌛", ".", "..", "..."];
-      let index = 0;
-      let cycleCount = 0;
-      const maxCycles = 10;
+    // Gets the loader div where text is shown
+    const loader = document.getElementById("loader");
 
-      const interval = setInterval(() => {
-        loader.textContent = frames[index % frames.length];
-        index++;
-        if (index % frames.length === 0) {
-          cycleCount++;
-        }
-        if (cycleCount >= maxCycles) {
-          clearInterval(interval);
-          loader.textContent = "✅";
-          status.textContent = "Done!";
-        }
-      }, 500);
-    }
+    // Status text under the loader
+    const status = document.getElementById("status");
 
-    runLoadingAnimation();
-  </script>
+    // Frames represent the animation steps shown one by one
+    const frames = ["⏳", "⌛", ".", "..", "..."];
 
-</body>
-</html>
+    // Index tracks the current frame 
+    let index = 0;
+
+    // cycleCount tracks full animation loops 
+    let cycleCount = 0;
+
+    // maxCycles determines when the animation should stop
+    const maxCycles = 10;
+
+    // setInterval runs the function repeatedly 
+    const interval = setInterval(() => {
+
+    // Updates the loader text using the current frame
+      loader.textContent = frames[index % frames.length];
+
+      // Move to the next frame
+      index++;
+
+      // Each full pass through frames counts as one cycle
+      if (index % frames.length === 0) {
+        cycleCount++;
+      }
+
+      // Once maxCycles is reached it stops the animation
+      if (cycleCount >= maxCycles) {
+
+        // clearInterval stops the looping behavior
+        clearInterval(interval);
+
+        loader.textContent = "✅";
+        status.textContent = "Done!";
+      }
+    }, 500); // Runs every half second
+  }
+
+  // Starts the animation when the page loads
+  runLoadingAnimation();
+
+  // Creative idea: add sound effects while loading 
+</script>
